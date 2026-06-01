@@ -6,33 +6,49 @@
   <title>Edgy IA Automation</title>
   <meta name="description" content="Automatización inteligente para tu negocio con el poder de la IA." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
+      --bg: #0d0d1a;
+      --bg2: #11112a;
+      --purple: #7c3aed;
+      --purple-light: #a855f7;
+      --pink: #ec4899;
+      --cyan: #06b6d4;
+      --green: #22c55e;
       --white: #ffffff;
-      --gray-50: #f9f9f9;
-      --gray-100: #f0f0f0;
-      --gray-300: #c4c4c4;
-      --gray-500: #7a7a7a;
-      --gray-700: #3a3a3a;
-      --accent: #1a1a1a;
-      --accent-soft: #f0f0f0;
-      --border: #e5e5e5;
-      --radius: 12px;
-      --radius-lg: 20px;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --border: rgba(255,255,255,0.08);
+      --card-bg: rgba(255,255,255,0.04);
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
+      background: var(--bg);
+      color: var(--white);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    /* ── BACKGROUND BLOBS ── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--purple); top: -200px; left: -200px; }
+    .blob-2 { width: 500px; height: 500px; background: var(--pink); top: 40%; right: -200px; }
+    .blob-3 { width: 400px; height: 400px; background: var(--cyan); bottom: 10%; left: 20%; }
 
     /* ── NAV ── */
     nav {
@@ -43,261 +59,369 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px 48px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(13,13,26,0.8);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--black);
+      font-weight: 800;
+      color: var(--white);
       text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
-    .nav-logo span { color: var(--gray-500); }
+    .nav-logo span {
+      background: linear-gradient(90deg, var(--purple-light), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
 
     .nav-cta {
-      background: var(--black);
+      background: linear-gradient(135deg, var(--purple), var(--pink));
       color: var(--white);
       padding: 10px 22px;
       border-radius: 50px;
       font-size: 0.875rem;
       font-weight: 600;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 24px rgba(124,58,237,0.4);
     }
 
-    .nav-cta:hover { opacity: 0.8; }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* ── HERO ── */
     #hero {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
-      background: var(--white);
+      padding: 140px 24px 80px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--gray-50);
-      border: 1px solid var(--border);
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.4);
       border-radius: 50px;
-      padding: 6px 16px;
+      padding: 6px 18px;
       font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--gray-700);
+      font-weight: 600;
+      color: var(--purple-light);
       margin-bottom: 32px;
+      letter-spacing: 0.5px;
     }
 
     .badge-dot {
-      width: 8px; height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%;
-      background: #22c55e;
+      background: var(--green);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34,197,94,0); }
     }
 
     h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      max-width: 800px;
-      color: var(--black);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 1.0;
+      max-width: 900px;
     }
 
-    h1 em {
-      font-style: normal;
-      color: var(--gray-500);
+    h1 .grad {
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--pink) 50%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-sub {
       margin-top: 24px;
       font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--gray-500);
-      max-width: 540px;
+      color: var(--gray-400);
+      max-width: 560px;
       line-height: 1.7;
     }
 
     .hero-actions {
-      margin-top: 40px;
+      margin-top: 44px;
       display: flex;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .btn-primary {
-      background: var(--black);
+      background: linear-gradient(135deg, var(--purple), var(--pink));
       color: var(--white);
-      padding: 14px 32px;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 32px rgba(124,58,237,0.5);
+    }
+
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--white);
+      border: 1px solid var(--border);
+      padding: 16px 36px;
       border-radius: 50px;
       font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: border-color 0.2s, background 0.2s;
+      backdrop-filter: blur(8px);
     }
 
-    .btn-primary:hover { opacity: 0.8; }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--black);
-      border: 1.5px solid var(--border);
-      padding: 14px 32px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: border-color 0.2s;
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.07);
     }
 
-    .btn-secondary:hover { border-color: var(--gray-300); }
-
-    .hero-visual {
-      margin-top: 64px;
-      width: 100%;
-      max-width: 860px;
-      background: var(--gray-50);
+    /* ── STATS ── */
+    .hero-stats {
+      margin-top: 72px;
+      display: flex;
+      gap: 0;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 32px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
     }
 
-    .stat-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-align: left;
+    .stat {
+      padding: 28px 48px;
+      text-align: center;
+      flex: 1;
+      border-right: 1px solid var(--border);
     }
+
+    .stat:last-child { border-right: none; }
 
     .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: var(--black);
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .stat-label {
-      font-size: 0.8rem;
-      color: var(--gray-500);
+      font-size: 0.78rem;
+      color: var(--gray-400);
       margin-top: 4px;
+    }
+
+    /* ── LOGOS / SOCIAL PROOF ── */
+    .social-proof {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .social-proof p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      opacity: 0.4;
+    }
+
+    .logo-item {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--white);
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--purple-light);
+      margin-bottom: 16px;
+      background: rgba(124,58,237,0.1);
+      border: 1px solid rgba(124,58,237,0.3);
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--gray-400);
+      font-size: 1.05rem;
+      max-width: 520px;
+      line-height: 1.7;
     }
 
     /* ── FEATURES ── */
     #features {
       padding: 100px 24px;
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
     }
 
-    .section-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--gray-500);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      max-width: 600px;
+    .features-header {
       margin-bottom: 60px;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
     }
 
     .feature-card {
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 32px;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+      backdrop-filter: blur(8px);
     }
 
     .feature-card:hover {
-      border-color: var(--gray-300);
-      transform: translateY(-2px);
+      border-color: rgba(124,58,237,0.4);
+      background: rgba(124,58,237,0.06);
+      transform: translateY(-4px);
     }
 
     .feature-icon {
-      width: 48px; height: 48px;
-      background: var(--gray-50);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      width: 52px; height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 20px;
     }
 
+    .fi-purple { background: rgba(124,58,237,0.2); }
+    .fi-pink   { background: rgba(236,72,153,0.2); }
+    .fi-cyan   { background: rgba(6,182,212,0.2); }
+    .fi-green  { background: rgba(34,197,94,0.2); }
+    .fi-orange { background: rgba(249,115,22,0.2); }
+    .fi-yellow { background: rgba(234,179,8,0.2); }
+
     .feature-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 10px;
     }
 
     .feature-card p {
-      font-size: 0.9rem;
-      color: var(--gray-500);
+      font-size: 0.875rem;
+      color: var(--gray-400);
       line-height: 1.7;
     }
 
     /* ── HOW IT WORKS ── */
     #how {
-      background: var(--gray-50);
       padding: 100px 24px;
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .how-inner {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
       margin-top: 60px;
-      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--border);
     }
 
     .step {
-      padding: 32px 24px;
-      position: relative;
+      padding: 36px 32px;
+      background: var(--bg2);
+      transition: background 0.3s;
     }
 
+    .step:hover { background: rgba(124,58,237,0.08); }
+
     .step-number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--gray-100);
-      line-height: 1;
-      margin-bottom: 16px;
+      font-size: 2.5rem;
+      font-weight: 900;
       letter-spacing: -2px;
+      background: linear-gradient(135deg, var(--purple-light), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1;
     }
 
     .step h3 {
@@ -308,40 +432,43 @@
 
     .step p {
       font-size: 0.875rem;
-      color: var(--gray-500);
+      color: var(--gray-400);
       line-height: 1.7;
     }
 
-    /* ── WAITLIST / CONTACT ── */
+    /* ── WAITLIST ── */
     #waitlist {
-      padding: 100px 24px;
-      max-width: 640px;
+      padding: 120px 24px;
+      max-width: 680px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
-    #waitlist .section-title { margin: 0 auto 16px; }
-
-    #waitlist .section-sub {
-      color: var(--gray-500);
-      margin-bottom: 40px;
-      font-size: 1rem;
+    .waitlist-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 60px 48px;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
     }
 
-    .form-group {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .waitlist-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--pink), var(--cyan));
     }
 
     .form-fields {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
+      margin-top: 36px;
     }
 
     input[type="text"],
@@ -349,44 +476,59 @@
     textarea {
       width: 100%;
       padding: 14px 18px;
-      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       font-size: 0.95rem;
       font-family: 'Inter', sans-serif;
-      color: var(--black);
-      background: var(--white);
+      color: var(--white);
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
+
+    input::placeholder, textarea::placeholder { color: var(--gray-600); }
 
     input:focus, textarea:focus {
-      border-color: var(--black);
+      border-color: rgba(124,58,237,0.6);
+      background: rgba(124,58,237,0.07);
     }
 
-    textarea { resize: vertical; min-height: 100px; }
+    textarea { resize: vertical; min-height: 90px; }
 
     .form-submit {
-      background: var(--black);
+      background: linear-gradient(135deg, var(--purple), var(--pink));
       color: var(--white);
-      padding: 14px 32px;
+      padding: 16px 32px;
       border-radius: 50px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       border: none;
       cursor: pointer;
       width: 100%;
-      max-width: 480px;
-      margin: 4px auto 0;
-      display: block;
-      transition: opacity 0.2s;
+      margin-top: 4px;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 28px rgba(124,58,237,0.4);
+      letter-spacing: 0.2px;
     }
 
-    .form-submit:hover { opacity: 0.8; }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .form-note {
-      margin-top: 16px;
-      font-size: 0.8rem;
-      color: var(--gray-300);
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--gray-600);
+    }
+
+    .success-msg {
+      display: none;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      color: #86efac;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 20px;
     }
 
     /* ── FOOTER ── */
@@ -398,64 +540,71 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
+      position: relative;
+      z-index: 1;
     }
 
-    footer .footer-logo {
-      font-weight: 700;
+    .footer-logo {
+      font-weight: 800;
       font-size: 0.95rem;
-      color: var(--black);
+      color: var(--white);
       text-decoration: none;
+    }
+
+    .footer-logo span {
+      background: linear-gradient(90deg, var(--purple-light), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     footer p {
       font-size: 0.8rem;
-      color: var(--gray-300);
-    }
-
-    /* ── SUCCESS ── */
-    .success-msg {
-      display: none;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      color: #166534;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-top: 12px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      color: var(--gray-600);
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      nav { padding: 16px 24px; }
-      .hero-visual { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero-stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .waitlist-card { padding: 36px 24px; }
+      footer { flex-direction: column; text-align: center; padding: 24px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- BACKGROUND BLOBS -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">Edgy <span>IA Automation</span></a>
-    <a class="nav-cta" href="#waitlist">Unirme a la lista</a>
+    <ul class="nav-links">
+      <li><a href="#features">Características</a></li>
+      <li><a href="#how">Cómo funciona</a></li>
+      <li><a href="#waitlist">Contacto</a></li>
+    </ul>
+    <a class="nav-cta" href="#waitlist">Quiero acceso →</a>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="badge">
       <span class="badge-dot"></span>
-      Automatización impulsada por IA
+      Ahora en acceso anticipado
     </div>
 
-    <h1>Tu negocio en piloto <em>automático.</em></h1>
+    <h1>Automatizá tu negocio<br><span class="grad">con el poder de la IA</span></h1>
 
     <p class="hero-sub">
-      Edgy IA Automation conecta tus procesos, elimina tareas repetitivas
-      y amplifica la productividad de tu equipo usando inteligencia artificial.
+      Edgy conecta tus procesos, elimina tareas repetitivas y amplifica
+      la productividad de tu equipo — 24/7, sin intervención humana.
     </p>
 
     <div class="hero-actions">
@@ -463,66 +612,84 @@
       <a href="#how" class="btn-secondary">¿Cómo funciona?</a>
     </div>
 
-    <div class="hero-visual">
-      <div class="stat-card">
+    <div class="hero-stats">
+      <div class="stat">
         <div class="stat-number">10×</div>
         <div class="stat-label">más rápido en tareas repetitivas</div>
       </div>
-      <div class="stat-card">
+      <div class="stat">
         <div class="stat-number">–70%</div>
         <div class="stat-label">reducción de trabajo manual</div>
       </div>
-      <div class="stat-card">
+      <div class="stat">
         <div class="stat-number">24/7</div>
-        <div class="stat-label">agentes activos sin interrupciones</div>
+        <div class="stat-label">agentes activos sin parar</div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="section-label">Características</div>
-    <h2 class="section-title">Todo lo que necesitás para automatizar con IA</h2>
+  <!-- SOCIAL PROOF -->
+  <div class="social-proof section-wrapper">
+    <p>Integraciones nativas con tus herramientas</p>
+    <div class="logos">
+      <span class="logo-item">Slack</span>
+      <span class="logo-item">Notion</span>
+      <span class="logo-item">HubSpot</span>
+      <span class="logo-item">Gmail</span>
+      <span class="logo-item">Zapier</span>
+      <span class="logo-item">WhatsApp</span>
+    </div>
+  </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Agentes autónomos</h3>
-        <p>Desplegá agentes de IA que trabajan de forma independiente, toman decisiones y completan tareas complejas sin intervención manual.</p>
+  <!-- FEATURES -->
+  <section id="features" class="section-wrapper">
+    <div style="max-width:1140px; margin:0 auto; padding:100px 24px;">
+      <div class="features-header">
+        <span class="section-label">Características</span>
+        <h2 class="section-title">Todo para automatizar<br>con inteligencia artificial</h2>
+        <p class="section-sub">Una plataforma completa para que tu equipo deje de perder tiempo en lo que una IA puede hacer mejor.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔗</div>
-        <h3>Integraciones nativas</h3>
-        <p>Conectá con tus herramientas favoritas — CRMs, ERPs, emails, Slack, Notion y más. Sin código, sin fricción.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Analítica en tiempo real</h3>
-        <p>Medí el impacto de cada automatización con dashboards claros. Entendé exactamente cuánto tiempo y dinero estás ahorrando.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3>Seguridad empresarial</h3>
-        <p>Tus datos siempre bajo control. Encriptación end-to-end, auditoría completa de acciones y cumplimiento de normativas.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>Sin curva de aprendizaje</h3>
-        <p>Interface visual e intuitiva. Cualquier miembro del equipo puede crear y gestionar automatizaciones desde el día uno.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚀</div>
-        <h3>Escalable desde el inicio</h3>
-        <p>Empezá con un proceso, escalá a cientos. La plataforma crece con vos sin cambios de arquitectura ni costos ocultos.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon fi-purple">⚡</div>
+          <h3>Agentes autónomos</h3>
+          <p>Desplegá agentes de IA que trabajan de forma independiente, toman decisiones y completan tareas complejas sin intervención manual.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-cyan">🔗</div>
+          <h3>Integraciones nativas</h3>
+          <p>Conectá con Slack, Notion, HubSpot, Gmail y más. Sin código, sin fricción, en minutos.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-pink">📊</div>
+          <h3>Analítica en tiempo real</h3>
+          <p>Medí el impacto de cada automatización con dashboards claros. Entendé exactamente cuánto tiempo y dinero estás ahorrando.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-green">🛡️</div>
+          <h3>Seguridad empresarial</h3>
+          <p>Encriptación end-to-end, auditoría completa de acciones y cumplimiento de normativas internacionales.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-yellow">🎯</div>
+          <h3>Sin curva de aprendizaje</h3>
+          <p>Interface visual e intuitiva. Cualquier miembro del equipo puede crear y gestionar automatizaciones desde el día uno.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon fi-orange">🚀</div>
+          <h3>Escalable desde el inicio</h3>
+          <p>Empezá con un proceso, escalá a cientos. La plataforma crece con vos sin cambios de arquitectura ni costos ocultos.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section id="how">
+  <section id="how" class="section-wrapper">
     <div class="how-inner">
-      <div class="section-label">Cómo funciona</div>
-      <h2 class="section-title">En tres pasos, tu negocio automatizado</h2>
+      <span class="section-label">Cómo funciona</span>
+      <h2 class="section-title">En cuatro pasos,<br>tu negocio automatizado</h2>
 
       <div class="steps">
         <div class="step">
@@ -550,46 +717,45 @@
   </section>
 
   <!-- WAITLIST -->
-  <section id="waitlist">
-    <div class="section-label">Acceso anticipado</div>
-    <h2 class="section-title">Sé de los primeros en automatizar con Edgy</h2>
-    <p class="section-sub">Dejá tus datos y te contactamos cuando abramos el acceso. Sin spam, te lo prometemos.</p>
+  <section id="waitlist" class="section-wrapper">
+    <div style="max-width:680px; margin:0 auto; padding:120px 24px; text-align:center;">
+      <span class="section-label">Acceso anticipado</span>
+      <h2 class="section-title">Sé de los primeros<br>en automatizar con Edgy</h2>
+      <p class="section-sub" style="margin:0 auto;">Dejá tus datos y te contactamos cuando abramos el acceso. Sin spam.</p>
 
-    <form id="contactForm" onsubmit="handleSubmit(event)">
-      <div class="form-fields">
-        <input type="text" id="name" placeholder="Tu nombre" required />
-        <input type="email" id="email" placeholder="Tu email" required />
-        <textarea id="message" placeholder="¿Qué proceso te gustaría automatizar? (opcional)"></textarea>
-        <button type="submit" class="form-submit">Reservar mi lugar →</button>
+      <div class="waitlist-card" style="margin-top:40px; text-align:left;">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-fields">
+            <input type="text" placeholder="Tu nombre" required />
+            <input type="email" placeholder="Tu email" required />
+            <textarea placeholder="¿Qué proceso querés automatizar? (opcional)"></textarea>
+            <button type="submit" class="form-submit">Reservar mi lugar →</button>
+          </div>
+        </form>
+        <div class="success-msg" id="successMsg">
+          ✅ ¡Listo! Te avisamos cuando tengamos acceso disponible.
+        </div>
+        <p class="form-note" style="text-align:center;">Sin compromisos. Podés darte de baja cuando quieras.</p>
       </div>
-    </form>
-
-    <div class="success-msg" id="successMsg">
-      ✅ ¡Listo! Te avisamos cuando tengamos acceso disponible.
     </div>
-    <p class="form-note">Sin compromisos. Podés darte de baja cuando quieras.</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <a class="footer-logo" href="#">Edgy IA Automation</a>
+    <a class="footer-logo" href="#">Edgy <span>IA Automation</span></a>
     <p>© 2026 Edgy IA Automation. Todos los derechos reservados.</p>
   </footer>
 
   <script>
     function handleSubmit(e) {
       e.preventDefault();
-      const form = document.getElementById('contactForm');
-      const msg = document.getElementById('successMsg');
-      form.style.display = 'none';
-      msg.style.display = 'block';
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
     }
 
-    // Smooth nav highlight
-    const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
-      const navEl = document.querySelector('nav');
-      navEl.style.boxShadow = window.scrollY > 20 ? '0 1px 20px rgba(0,0,0,0.06)' : 'none';
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.3)' : 'none';
     });
   </script>
 </body>
