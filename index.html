@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edgy IA Automation</title>
+  <meta name="description" content="Automatización inteligente para tu negocio con el poder de la IA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-50: #f9f9f9;
+      --gray-100: #f0f0f0;
+      --gray-300: #c4c4c4;
+      --gray-500: #7a7a7a;
+      --gray-700: #3a3a3a;
+      --accent: #1a1a1a;
+      --accent-soft: #f0f0f0;
+      --border: #e5e5e5;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gray-500); }
+
+    .nav-cta {
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: var(--white);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 32px;
+    }
+
+    .badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      max-width: 800px;
+      color: var(--black);
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--gray-500);
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gray-500);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      margin-top: 40px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.8; }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid var(--border);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--gray-300); }
+
+    .hero-visual {
+      margin-top: 64px;
+      width: 100%;
+      max-width: 860px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: left;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--black);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 4px;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      max-width: 600px;
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--gray-300);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how {
+      background: var(--gray-50);
+      padding: 100px 24px;
+    }
+
+    .how-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .step {
+      padding: 32px 24px;
+      position: relative;
+    }
+
+    .step-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gray-100);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+
+    /* ── WAITLIST / CONTACT ── */
+    #waitlist {
+      padding: 100px 24px;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #waitlist .section-title { margin: 0 auto 16px; }
+
+    #waitlist .section-sub {
+      color: var(--gray-500);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--black);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      background: var(--black);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 480px;
+      margin: 4px auto 0;
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .form-submit:hover { opacity: 0.8; }
+
+    .form-note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--gray-300);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer .footer-logo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--gray-300);
+    }
+
+    /* ── SUCCESS ── */
+    .success-msg {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      color: #166534;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 12px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero-visual { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Edgy <span>IA Automation</span></a>
+    <a class="nav-cta" href="#waitlist">Unirme a la lista</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Automatización impulsada por IA
+    </div>
+
+    <h1>Tu negocio en piloto <em>automático.</em></h1>
+
+    <p class="hero-sub">
+      Edgy IA Automation conecta tus procesos, elimina tareas repetitivas
+      y amplifica la productividad de tu equipo usando inteligencia artificial.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">Quiero acceso anticipado</a>
+      <a href="#how" class="btn-secondary">¿Cómo funciona?</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-card">
+        <div class="stat-number">10×</div>
+        <div class="stat-label">más rápido en tareas repetitivas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">–70%</div>
+        <div class="stat-label">reducción de trabajo manual</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">agentes activos sin interrupciones</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-label">Características</div>
+    <h2 class="section-title">Todo lo que necesitás para automatizar con IA</h2>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Agentes autónomos</h3>
+        <p>Desplegá agentes de IA que trabajan de forma independiente, toman decisiones y completan tareas complejas sin intervención manual.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Integraciones nativas</h3>
+        <p>Conectá con tus herramientas favoritas — CRMs, ERPs, emails, Slack, Notion y más. Sin código, sin fricción.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Analítica en tiempo real</h3>
+        <p>Medí el impacto de cada automatización con dashboards claros. Entendé exactamente cuánto tiempo y dinero estás ahorrando.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Seguridad empresarial</h3>
+        <p>Tus datos siempre bajo control. Encriptación end-to-end, auditoría completa de acciones y cumplimiento de normativas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Sin curva de aprendizaje</h3>
+        <p>Interface visual e intuitiva. Cualquier miembro del equipo puede crear y gestionar automatizaciones desde el día uno.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Escalable desde el inicio</h3>
+        <p>Empezá con un proceso, escalá a cientos. La plataforma crece con vos sin cambios de arquitectura ni costos ocultos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="how-inner">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">En tres pasos, tu negocio automatizado</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Conectá tus herramientas</h3>
+          <p>Integrá en minutos las plataformas que ya usás. Edgy se adapta a tu stack, no al revés.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Definí tus flujos</h3>
+          <p>Usando lenguaje natural o nuestro editor visual, describí qué querés automatizar. La IA hace el resto.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Activá y medí</h3>
+          <p>Tus agentes entran en acción de inmediato. Seguí el impacto en tiempo real desde el dashboard.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>Optimizá sin parar</h3>
+          <p>Edgy aprende de cada ejecución y sugiere mejoras continuas para maximizar tu eficiencia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section id="waitlist">
+    <div class="section-label">Acceso anticipado</div>
+    <h2 class="section-title">Sé de los primeros en automatizar con Edgy</h2>
+    <p class="section-sub">Dejá tus datos y te contactamos cuando abramos el acceso. Sin spam, te lo prometemos.</p>
+
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-fields">
+        <input type="text" id="name" placeholder="Tu nombre" required />
+        <input type="email" id="email" placeholder="Tu email" required />
+        <textarea id="message" placeholder="¿Qué proceso te gustaría automatizar? (opcional)"></textarea>
+        <button type="submit" class="form-submit">Reservar mi lugar →</button>
+      </div>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      ✅ ¡Listo! Te avisamos cuando tengamos acceso disponible.
+    </div>
+    <p class="form-note">Sin compromisos. Podés darte de baja cuando quieras.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="footer-logo" href="#">Edgy IA Automation</a>
+    <p>© 2026 Edgy IA Automation. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const msg = document.getElementById('successMsg');
+      form.style.display = 'none';
+      msg.style.display = 'block';
+    }
+
+    // Smooth nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const navEl = document.querySelector('nav');
+      navEl.style.boxShadow = window.scrollY > 20 ? '0 1px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+  </script>
+</body>
+</html>
