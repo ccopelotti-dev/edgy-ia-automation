@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EDGY Sistemas</title>
-  <meta name="description" content="Automatización inteligente para tu negocio con el poder de la IA." />
+  <meta name="description" content="Automatización inteligente para tu negocio con la potencia de la Tecnología." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -63,35 +63,15 @@
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-logo svg {
-      flex-shrink: 0;
-    }
-
-    .nav-logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text .brand {
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      color: var(--primary);
-      letter-spacing: 1px;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
     }
 
-    .nav-logo-text .sub {
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--gray-400);
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .nav-logo .brand {
+      color: var(--primary);
     }
 
     .nav-links {
@@ -150,6 +130,12 @@
       color: var(--primary-light);
       margin-bottom: 32px;
       letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .badge:hover {
+      background: rgba(103,200,124,0.2);
+      border-color: rgba(103,200,124,0.6);
     }
 
     .badge-dot {
@@ -557,26 +543,14 @@
     }
 
     .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--white);
       text-decoration: none;
     }
 
     .footer-logo .brand {
-      font-size: 0.95rem;
-      font-weight: 800;
       color: var(--primary);
-      letter-spacing: 1px;
-    }
-
-    .footer-logo .sub {
-      font-size: 0.6rem;
-      font-weight: 500;
-      color: var(--gray-400);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
     }
 
     footer p {
@@ -594,6 +568,117 @@
       .waitlist-card { padding: 36px 24px; }
       footer { flex-direction: column; text-align: center; padding: 24px; }
     }
+
+    /* ═══════════════════════════════════════
+       MODAL INVERSORES
+    ═══════════════════════════════════════ */
+    .m-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(3,24,52,0.93); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .m-overlay.open { display: flex; }
+    .m-box {
+      background: var(--bg2); border: 1px solid rgba(103,200,124,0.18);
+      border-radius: var(--radius-lg); width: 100%; max-width: 700px;
+      max-height: 92vh; overflow-y: auto; position: relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(103,200,124,0.08);
+      scrollbar-width: thin; scrollbar-color: rgba(103,200,124,0.3) transparent;
+    }
+    .m-close {
+      position: sticky; top: 0; float: right; margin: 14px 14px 0 0;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--gray-400); font-size: 1.2rem; cursor: pointer;
+      width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: background 0.2s, color 0.2s; z-index: 10;
+    }
+    .m-close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+    .m-step { display: none; padding: 10px 32px 36px; clear: both; }
+    .m-step.active { display: block; }
+
+    .m-head { text-align: center; margin-bottom: 26px; padding-top: 6px; }
+    .m-pill {
+      display: inline-block; background: rgba(103,200,124,0.1);
+      border: 1px solid rgba(103,200,124,0.3); color: var(--primary-light);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 50px; margin-bottom: 12px;
+    }
+    .m-title { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .m-sub { font-size: 0.86rem; color: var(--gray-400); line-height: 1.6; max-width: 460px; margin: 0 auto; }
+
+    .tier-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
+    @media (max-width: 560px) { .tier-grid { grid-template-columns: repeat(2,1fr); } }
+
+    .t-card {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 10px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .t-card:hover { border-color: rgba(103,200,124,0.35); background: rgba(103,200,124,0.05); transform: translateY(-2px); }
+    .t-card.sel { border-color: var(--primary); background: rgba(103,200,124,0.1); box-shadow: 0 0 20px rgba(103,200,124,0.18); transform: translateY(-2px); }
+    .t-monto { font-size: 0.92rem; font-weight: 800; color: var(--white); letter-spacing: -0.3px; }
+    .t-ret { font-size: 0.68rem; color: var(--primary-light); margin-top: 5px; font-weight: 600; }
+    .t-cupo { font-size: 0.6rem; color: var(--gray-400); margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .t-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+
+    .m-btn-next {
+      display: none; width: 100%; padding: 16px; border-radius: 50px;
+      background: var(--primary); color: var(--bg); font-size: 1rem; font-weight: 700;
+      border: none; cursor: pointer; margin-top: 6px;
+      transition: opacity 0.2s, transform 0.2s; box-shadow: 0 0 28px rgba(103,200,124,0.3);
+    }
+    .m-btn-next.vis { display: block; }
+    .m-btn-next:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .m-back {
+      display: inline-flex; align-items: center; gap: 6px; background: none;
+      border: none; color: var(--gray-400); font-size: 0.82rem; font-weight: 600;
+      cursor: pointer; padding: 0; margin-bottom: 20px; transition: color 0.2s;
+    }
+    .m-back:hover { color: var(--white); }
+
+    .tk-doc { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 26px; background: rgba(255,255,255,0.02); }
+    .tk-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: rgba(103,200,124,0.06); border-bottom: 1px solid var(--border); }
+    .tk-brand { font-size: 0.92rem; font-weight: 800; }
+    .tk-brand span { color: var(--primary); }
+    .tk-doc-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1.8px; color: var(--gray-400); margin-top: 2px; }
+    .tk-convoc { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-light); background: rgba(103,200,124,0.12); padding: 4px 10px; border-radius: 50px; border: 1px solid rgba(103,200,124,0.25); white-space: nowrap; }
+    .tk-metrics { display: grid; grid-template-columns: repeat(3,1fr); border-bottom: 1px solid var(--border); }
+    .tk-metric { padding: 15px 10px; text-align: center; border-right: 1px solid var(--border); }
+    .tk-metric:last-child { border-right: none; }
+    .tk-mv { font-size: 1.05rem; font-weight: 800; color: var(--white); }
+    .tk-mv.g { color: var(--primary-light); }
+    .tk-mv.b { color: #60a5fa; }
+    .tk-ml { font-size: 0.6rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.9px; margin-top: 3px; }
+    .tk-flow { display: flex; align-items: center; padding: 12px 18px; gap: 2px; border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.1); }
+    .tk-fs { flex: 1; text-align: center; }
+    .tk-fv { font-size: 0.8rem; font-weight: 700; color: var(--white); }
+    .tk-fv.ret { color: var(--primary-light); }
+    .tk-fl { font-size: 0.57rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .tk-arr { color: var(--primary); font-size: 0.85rem; padding: 0 2px; flex-shrink: 0; }
+    .tk-arr.g { color: var(--primary-light); }
+    .tk-body { padding: 16px 18px; }
+    .tk-conds { display: grid; grid-template-columns: 1fr 1fr; }
+    .tk-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid rgba(103,200,124,0.07); font-size: 0.76rem; }
+    .tk-row .l { color: var(--gray-400); font-size: 0.7rem; }
+    .tk-row .v { color: var(--white); font-weight: 600; text-align: right; }
+    .tk-note { margin-top: 14px; background: rgba(103,200,124,0.05); border: 1px solid rgba(103,200,124,0.12); border-radius: 10px; padding: 11px 14px; }
+    .tk-note p { font-size: 0.74rem; color: var(--gray-400); line-height: 1.65; }
+    .tk-note strong { color: var(--white); }
+
+    .m-form-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; }
+    .m-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    .m-input { width: 100%; padding: 13px 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.9rem; font-family: 'Inter', sans-serif; color: var(--white); outline: none; transition: border-color 0.2s, background 0.2s; }
+    .m-input::placeholder { color: var(--gray-600); }
+    .m-input:focus { border-color: rgba(103,200,124,0.5); background: rgba(103,200,124,0.04); }
+    .m-submit { width: 100%; padding: 16px; border-radius: 50px; background: var(--primary); color: var(--bg); font-size: 1rem; font-weight: 700; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 0 28px rgba(103,200,124,0.3); }
+    .m-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+    .m-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .m-disclaimer { font-size: 0.66rem; color: var(--gray-600); margin-top: 10px; line-height: 1.55; text-align: center; }
+    .m-success { display: none; text-align: center; padding: 40px 24px 24px; }
+    .m-success-icon { font-size: 3rem; margin-bottom: 12px; }
+    .m-success h3 { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; }
+    .m-success p { color: var(--gray-400); font-size: 0.88rem; line-height: 1.7; }
   </style>
 </head>
 <body>
@@ -605,37 +690,7 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#">
-      <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <!-- Brain outline -->
-        <path d="M30 65 Q20 55 22 42 Q24 28 38 24 Q48 20 55 26 Q62 20 72 24 Q84 30 82 46 Q80 58 70 65 Q62 72 50 72 Q38 72 30 65Z" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round"/>
-        <!-- Brain stem -->
-        <line x1="50" y1="72" x2="50" y2="88" stroke="#ffffff" stroke-width="3.5"/>
-        <line x1="39" y1="82" x2="50" y2="88" stroke="#ffffff" stroke-width="3"/>
-        <line x1="61" y1="83" x2="50" y2="88" stroke="#ffffff" stroke-width="3"/>
-        <!-- Circuit traces -->
-        <line x1="31" y1="44" x2="43" y2="44" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="44" x2="43" y2="30" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="30" x2="57" y2="30" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="44" x2="68" y2="44" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="30" x2="57" y2="52" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="52" x2="68" y2="52" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="44" x2="43" y2="56" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="31" y1="56" x2="43" y2="56" stroke="#ffffff" stroke-width="2.5"/>
-        <!-- Green dots -->
-        <circle cx="30" cy="44" r="4.5" fill="#67c87c"/>
-        <circle cx="43" cy="27" r="4.5" fill="#67c87c"/>
-        <circle cx="57" cy="27" r="4.5" fill="#67c87c"/>
-        <circle cx="70" cy="44" r="4.5" fill="#67c87c"/>
-        <circle cx="70" cy="52" r="4" fill="#67c87c"/>
-        <circle cx="30" cy="56" r="4" fill="#67c87c"/>
-        <circle cx="50" cy="88" r="5" fill="#67c87c"/>
-      </svg>
-      <div class="nav-logo-text">
-        <span class="brand">EDGY</span>
-        <span class="sub">Sistemas</span>
-      </div>
-    </a>
+    <a class="nav-logo" href="#"><span class="brand">EDGY</span> Sistemas</a>
     <ul class="nav-links">
       <li><a href="#features">Características</a></li>
       <li><a href="#how">Cómo funciona</a></li>
@@ -646,12 +701,12 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="badge">
+    <div class="badge" onclick="abrirModal()">
       <span class="badge-dot"></span>
       Ahora en acceso anticipado
     </div>
 
-    <h1>Automatizá tu negocio<br><span class="grad">con el poder de la IA</span></h1>
+    <h1>Automatizá tu negocio<br><span class="grad">con la potencia de la Tecnología</span></h1>
 
     <p class="hero-sub">
       EDGY Sistemas conecta tus procesos, elimina tareas repetitivas y amplifica
@@ -793,37 +848,125 @@
 
   <!-- FOOTER -->
   <footer>
-    <a class="footer-logo" href="#">
-      <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 65 Q20 55 22 42 Q24 28 38 24 Q48 20 55 26 Q62 20 72 24 Q84 30 82 46 Q80 58 70 65 Q62 72 50 72 Q38 72 30 65Z" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linejoin="round"/>
-        <line x1="50" y1="72" x2="50" y2="88" stroke="#ffffff" stroke-width="3.5"/>
-        <line x1="39" y1="82" x2="50" y2="88" stroke="#ffffff" stroke-width="3"/>
-        <line x1="61" y1="83" x2="50" y2="88" stroke="#ffffff" stroke-width="3"/>
-        <line x1="31" y1="44" x2="43" y2="44" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="44" x2="43" y2="30" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="30" x2="57" y2="30" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="44" x2="68" y2="44" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="30" x2="57" y2="52" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="57" y1="52" x2="68" y2="52" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="43" y1="44" x2="43" y2="56" stroke="#ffffff" stroke-width="2.5"/>
-        <line x1="31" y1="56" x2="43" y2="56" stroke="#ffffff" stroke-width="2.5"/>
-        <circle cx="30" cy="44" r="4.5" fill="#67c87c"/>
-        <circle cx="43" cy="27" r="4.5" fill="#67c87c"/>
-        <circle cx="57" cy="27" r="4.5" fill="#67c87c"/>
-        <circle cx="70" cy="44" r="4.5" fill="#67c87c"/>
-        <circle cx="70" cy="52" r="4" fill="#67c87c"/>
-        <circle cx="30" cy="56" r="4" fill="#67c87c"/>
-        <circle cx="50" cy="88" r="5" fill="#67c87c"/>
-      </svg>
-      <div>
-        <span class="brand">EDGY</span>
-        <span class="sub">Sistemas</span>
-      </div>
-    </a>
+    <a class="footer-logo" href="#"><span class="brand">EDGY</span> Sistemas</a>
     <p>© 2026 EDGY Sistemas. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- ═══════════════════════════════════════════
+       MODAL INVERSORES
+  ═══════════════════════════════════════════ -->
+  <div class="m-overlay" id="mOverlay" onclick="cerrarSiOverlay(event)">
+    <div class="m-box" id="mBox">
+      <button class="m-close" onclick="cerrarModal()">✕</button>
+
+      <!-- STEP 1: Selector de monto -->
+      <div class="m-step active" id="mStep1">
+        <div class="m-head">
+          <div class="m-pill">Convocatoria Fundacional · 2026</div>
+          <h2 class="m-title">Sumate como Inversor</h2>
+          <p class="m-sub">Elegí el monto con el que querés participar. Todos los tickets ofrecen el mismo <strong style="color:var(--primary-light)">40% de retorno en dólares</strong>.</p>
+        </div>
+
+        <div class="tier-grid" id="tierGrid"></div>
+
+        <button class="m-btn-next" id="mBtnNext" onclick="irADocumento()">
+          Ver mi Ticket →
+        </button>
+      </div>
+
+      <!-- STEP 2: Documento + Formulario -->
+      <div class="m-step" id="mStep2">
+        <button class="m-back" onclick="volverASelector()">← Cambiar monto</button>
+
+        <!-- TICKET DOC -->
+        <div class="tk-doc">
+          <div class="tk-head">
+            <div>
+              <div class="tk-brand"><span>EDGY</span> Sistemas</div>
+              <div class="tk-doc-label">Ticket de Participación en Ingresos</div>
+            </div>
+            <div class="tk-convoc">Convocatoria Fundacional</div>
+          </div>
+
+          <div class="tk-metrics">
+            <div class="tk-metric">
+              <div class="tk-mv" id="tkMonto">—</div>
+              <div class="tk-ml">Tu inversión</div>
+            </div>
+            <div class="tk-metric">
+              <div class="tk-mv g">40 %</div>
+              <div class="tk-ml">Retorno</div>
+            </div>
+            <div class="tk-metric">
+              <div class="tk-mv b">36 meses</div>
+              <div class="tk-ml">Plazo máximo</div>
+            </div>
+          </div>
+
+          <div class="tk-flow">
+            <div class="tk-fs">
+              <div class="tk-fv" id="flowMonto">—</div>
+              <div class="tk-fl">Aportás</div>
+            </div>
+            <div class="tk-arr">→</div>
+            <div class="tk-fs">
+              <div class="tk-fv">Edgy Sistemas</div>
+              <div class="tk-fl">Opera y factura</div>
+            </div>
+            <div class="tk-arr">→</div>
+            <div class="tk-fs">
+              <div class="tk-fv">% ingresos</div>
+              <div class="tk-fl">Distribución mensual</div>
+            </div>
+            <div class="tk-arr g">→</div>
+            <div class="tk-fs">
+              <div class="tk-fv ret" id="flowRetorno">—</div>
+              <div class="tk-fl">Retorno total</div>
+            </div>
+          </div>
+
+          <div class="tk-body">
+            <div class="tk-conds">
+              <div class="tk-row"><span class="l">Inversión</span><span class="v" id="condMonto">—</span></div>
+              <div class="tk-row"><span class="l">Retorno total</span><span class="v" id="condRetorno">—</span></div>
+              <div class="tk-row"><span class="l">Mecanismo</span><span class="v">% de ingresos mensuales</span></div>
+              <div class="tk-row"><span class="l">Plazo máximo</span><span class="v">36 meses</span></div>
+              <div class="tk-row"><span class="l">Renovación</span><span class="v">Posible al vencimiento</span></div>
+              <div class="tk-row"><span class="l">Cancelación</span><span class="v">60 días de aviso</span></div>
+            </div>
+            <div class="tk-note">
+              <p><strong>Qué es este instrumento.</strong> Un contrato privado de participación en ingresos entre el inversor y Edgy Sistemas. No implica participación societaria. El retorno se distribuye mensualmente en proporción al capital invertido, denominado en dólares estadounidenses, hasta alcanzar el retorno pactado o vencer el plazo máximo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div id="mFormWrap">
+          <p class="m-form-title">Completá tus datos para registrar tu interés</p>
+          <div class="m-fields">
+            <input type="text"  class="m-input" id="invNombre"   placeholder="Nombre completo *" />
+            <input type="tel"   class="m-input" id="invWhatsapp" placeholder="WhatsApp *" />
+            <input type="email" class="m-input" id="invEmail"    placeholder="Email (opcional)" />
+          </div>
+          <button class="m-submit" id="mSubmitBtn" onclick="registrarInversor()">
+            Quiero participar con <span id="btnMonto">—</span> →
+          </button>
+          <p class="m-disclaimer">Al registrarte confirmás tu interés. Te contactamos dentro de las 48 hs para coordinar los pasos. Este documento es informativo y no constituye oferta pública de valores (Ley N.° 26.831).</p>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="m-success" id="mSuccess">
+          <div class="m-success-icon">✅</div>
+          <h3>¡Registro recibido!</h3>
+          <p>Te contactamos en menos de 48 hs para coordinar los pasos siguientes.<br>Gracias por sumarte a Edgy Sistemas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
+    // ── Waitlist form original ──
     function handleSubmit(e) {
       e.preventDefault();
       document.getElementById('contactForm').style.display = 'none';
@@ -834,6 +977,148 @@
       document.querySelector('nav').style.boxShadow =
         window.scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.4)' : 'none';
     });
+
+    // ══════════════════════════════════════════
+    // MODAL INVERSORES
+    // ══════════════════════════════════════════
+
+    // ── Supabase config (reemplazá con tus credenciales) ──
+    const SB_URL = 'TU_SUPABASE_URL';   // ← ej: https://xxxx.supabase.co
+    const SB_KEY = 'TU_ANON_KEY';        // ← anon public key
+
+    // ── Tramos disponibles ──
+    const TIERS = [
+      { monto: 300,  cupo: 5 },
+      { monto: 500,  cupo: 5 },
+      { monto: 750,  cupo: 4 },
+      { monto: 1000, cupo: 4 },
+      { monto: 1500, cupo: 3 },
+      { monto: 2000, cupo: 3 },
+      { monto: 2500, cupo: 2 },
+      { monto: 3000, cupo: 2 },
+    ];
+
+    let montoSel = null;
+
+    // ── Formateo ──
+    function fmt(n) {
+      return 'USD ' + n.toLocaleString('es-AR');
+    }
+
+    // ── Construir tier cards ──
+    (function buildGrid() {
+      const grid = document.getElementById('tierGrid');
+      TIERS.forEach(t => {
+        const ret = Math.round(t.monto * 1.4);
+        const card = document.createElement('div');
+        card.className = 't-card';
+        card.dataset.monto = t.monto;
+        card.innerHTML = `
+          <div class="t-monto">${fmt(t.monto)}</div>
+          <div class="t-ret">→ ${fmt(ret)}</div>
+          <div class="t-cupo"><span class="t-dot"></span>${t.cupo} cupos</div>
+        `;
+        card.addEventListener('click', () => selTier(t.monto, card));
+        grid.appendChild(card);
+      });
+    })();
+
+    function selTier(monto, card) {
+      document.querySelectorAll('.t-card').forEach(c => c.classList.remove('sel'));
+      card.classList.add('sel');
+      montoSel = monto;
+      const btn = document.getElementById('mBtnNext');
+      btn.textContent = `Ver mi Ticket de ${fmt(monto)} →`;
+      btn.classList.add('vis');
+    }
+
+    function irADocumento() {
+      if (!montoSel) return;
+      const ret = Math.round(montoSel * 1.4);
+      document.getElementById('tkMonto').textContent    = fmt(montoSel);
+      document.getElementById('flowMonto').textContent  = fmt(montoSel);
+      document.getElementById('flowRetorno').textContent= fmt(ret);
+      document.getElementById('condMonto').textContent  = fmt(montoSel);
+      document.getElementById('condRetorno').textContent= `${fmt(ret)} (40 %)`;
+      document.getElementById('btnMonto').textContent   = fmt(montoSel);
+      document.getElementById('mStep1').classList.remove('active');
+      document.getElementById('mStep2').classList.add('active');
+      document.getElementById('mBox').scrollTop = 0;
+    }
+
+    function volverASelector() {
+      document.getElementById('mStep2').classList.remove('active');
+      document.getElementById('mStep1').classList.add('active');
+      document.getElementById('mBox').scrollTop = 0;
+    }
+
+    function abrirModal() {
+      document.getElementById('mOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal() {
+      document.getElementById('mOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function cerrarSiOverlay(e) {
+      if (e.target === document.getElementById('mOverlay')) cerrarModal();
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') cerrarModal();
+    });
+
+    // ── Registrar en Supabase ──
+    async function registrarInversor() {
+      const nombre   = document.getElementById('invNombre').value.trim();
+      const whatsapp = document.getElementById('invWhatsapp').value.trim();
+      const email    = document.getElementById('invEmail').value.trim();
+
+      if (!nombre || !whatsapp) {
+        alert('Por favor completá nombre y WhatsApp.');
+        return;
+      }
+
+      const btn = document.getElementById('mSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Registrando...';
+
+      const retorno = Math.round(montoSel * 1.4);
+
+      try {
+        const res = await fetch(`${SB_URL}/rest/v1/tickets_inversores`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SB_KEY,
+            'Authorization': `Bearer ${SB_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({
+            nombre, whatsapp, email,
+            monto: montoSel,
+            retorno,
+            estado: 'pendiente'
+          })
+        });
+
+        if (res.ok || res.status === 201) {
+          document.getElementById('mFormWrap').style.display = 'none';
+          document.querySelector('.tk-doc').style.display    = 'none';
+          document.querySelector('.m-back').style.display    = 'none';
+          document.getElementById('mSuccess').style.display  = 'block';
+        } else {
+          throw new Error('Error servidor: ' + res.status);
+        }
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = `Quiero participar con ${fmt(montoSel)} →`;
+        alert('Hubo un error al registrar. Intentá de nuevo o contactanos por WhatsApp.');
+      }
+    }
   </script>
 </body>
 </html>
